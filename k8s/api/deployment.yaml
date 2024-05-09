@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      volumes:
+        - name: api-src
+          hostPath:
+            path: /opt/code
+      containers:
+        - name: api
+          image: chhewangsrp/blogpost-api
+          imagePullPolicy: Never
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          volumeMounts:
+            - name: api-src
+              mountPath: /blogpost
+          envFrom:
+            - secretRef:
+                name: django-secrets
+            - configMapRef:
+                name: django-configmap
