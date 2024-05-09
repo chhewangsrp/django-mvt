@@ -1,19 +1,19 @@
-## Django application skeleton deployed to Kubernetes
+## Django application skeleton deployed to Kubernetes for local development
 
-This application skeleton serves as the base for a django application deployed to minikube kubernetes cluster.
+This application skeleton serves as the base for a Django application deployed to minikube Kubernetes cluster.
 
-Things to note is that the application architecture includes django & gunicorn, nginx, and postgresql.
+Things to note is that the application architecture includes Django & gunicorn, nginx, and Postgresql.
 
 The local deployment involves 3 pods, each of which contains the following:
 nginx,
-postgresql,
-django & gunicorn
+PostgreSQL,
+Django & gunicorn
 
 ![screenshot](minikube-django-architecture.png)
 
 To get started, clone this repository and run the following commands:
 
-###### Note: This Readme assumes that you have docker engine running and docker-compose, minikube, and kubectl installed and configured.
+##### Note: This Readme assumes that you have the docker engine running and docker-compose, minikube, and kubectl installed and configured.
 
 ### Prerequisites
 
@@ -26,9 +26,9 @@ Use minikube docker-env
 eval $(minikube docker-env)
 ```
 
-Use docker compose to build your images:
+Use docker-compose to build your images:
 ```sh
-docker compose build
+docker-compose build
 ```
 Run `docker images` to ensure that the images are present.
 
@@ -37,7 +37,7 @@ Ensure minikube is running on the machine.
 ```sh
 minikube status
 ```
-After cloning the repo and ensuring minikube is running, next we mount the local directory to the minkube VM by running the following command:
+After cloning the repo and ensuring minikube is running, next, we mount the local directory to the minikube VM by running the following command:
 ```sh
 minikube mount "your/path/to/this/repo's/api/src:/opt/code"
 ```
@@ -64,12 +64,12 @@ kubectl apply -f k8s/api/service.yaml
 ```
 Run `kubectl get service` to ensure that the services are available.
 
-At this point, your django application should be running. You can get your pods and check its logs by running the following command.
+At this point, your Django application should be running. You can get your pods and check their logs by running the following command.
 ```sh
 kubectl get pods
 kubectl logs <your_pod_name>
 ```
-Lastly, in order to access your django application from the web browser, you need to do port forwarding to Access Applications in a Cluster.
+Lastly, to access your Django application from the web browser, you need to do port forwarding to Access Applications in a Cluster.
 You can do this by running the following command:
 ```sh
 kubectl port-forward service/nginx 3000:80
