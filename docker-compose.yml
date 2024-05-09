@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: chhewangsrp/blogpost-nginx
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    restart: always
+    ports:
+    - "80:80"
+
+  # Postgres
+  database:
+    image: chhewangsrp/blogpost-postgres
+    build: ./db/
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: blogpost
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      ALLOW_IP_RANGE: 0.0.0.0/0
+    ports:
+      - 5432
+
+  # Django API development server
+  api:
+    image: chhewangsrp/blogpost-api
+    build:
+      dockerfile: Dockerfile
+      context: ./api/
+    restart: unless-stopped
+    depends_on:
+      - database
+    env_file:
+      - .env
+    volumes:
+      - /opt/code:/blogpost
+
+volumes:
+  django_mvt:  
