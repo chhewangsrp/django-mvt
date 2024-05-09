@@ -1,4 +1,4 @@
-## Django application skeleton deployed to Kubernetes for local development
+## Django application skeleton deployed to minikube's cluster for local development
 
 This application skeleton serves as the base for a Django application deployed to minikube Kubernetes cluster.
 
