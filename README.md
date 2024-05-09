@@ -76,3 +76,5 @@ kubectl port-forward service/nginx 3000:80
 ```
 Now your application should be accessible from [http://localhost:3000](http://localhost:3000)
 
+TODO:
+- Create a persistent volume for postgres
