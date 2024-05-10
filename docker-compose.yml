@@ -35,7 +35,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /opt/code:/blogpost
+      - ./api/src:/blogpost
 
 volumes:
   django_mvt:  
