@@ -71,4 +71,4 @@ kubectl port-forward service/nginx 3000:80
 
 Now your application should be accessible from [http://localhost:3000](http://localhost:3000)
 
-You can also use ingress to access your application from outside world. There is a great tutorial on how to setup ingress on Minikube found !(here)[https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/].
+You can also use ingress to access your application from outside world. There is a great tutorial on how to setup ingress on Minikube found ![here](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/).
