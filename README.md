@@ -47,20 +47,14 @@ This way, we don't have to keep building our image to test code changes. This al
 
 Next, we run all the config files using kubectl. This can be done by running the following commands:
 ```sh
-# For db service
-kubectl apply -f k8s/db/secrets.yaml
-kubectl apply -f k8s/db/deployments.yaml
-kubectl apply -f k8s/db/service.yaml
+# For db service. This will run all the yaml files under db folder.
+kubectl apply -f k8s/db/
 
-# For nginx service
-kubectl apply -f k8s/nginx/deployments.yaml
-kubectl apply -f k8s/nginx/service.yaml
+# For nginx service. This will run all the yaml files under nginx folder.
+kubectl apply -f k8s/nginx/
 
-# For api service.
-kubectl apply -f k8s/api/secrets.yaml
-kubectl apply -f k8s/api/configmap.yaml
-kubectl apply -f k8s/api/deployments.yaml
-kubectl apply -f k8s/api/service.yaml
+# For api service. This will run all the yaml files under api folder.
+kubectl apply -f k8s/api/
 ```
 Run `kubectl get service` to ensure that the services are available.
 
@@ -74,5 +68,7 @@ You can do this by running the following command:
 ```sh
 kubectl port-forward service/nginx 3000:80
 ```
+
 Now your application should be accessible from [http://localhost:3000](http://localhost:3000)
 
+You can also use ingress to access your application from outside world. There is a great tutorial on how to setup ingress on Minikube found !(here)[https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/].
